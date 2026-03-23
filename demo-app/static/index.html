@@ -450,6 +450,119 @@
     .section { display: none; }
     .section.active { display: block; }
 
+    /* ── Human Workflow Card ──────────────────────────────────────────────── */
+    .workflow-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--cap-border);
+      box-shadow: var(--cap-card-shadow);
+      overflow: hidden;
+      margin-top: 1.5rem;
+      display: none;
+    }
+    .workflow-card.show { display: block; animation: fadeInUp 0.4s ease forwards; }
+    .workflow-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .workflow-header.wf-approved { background: linear-gradient(135deg, #1B5E20, #2E7D32); color: #fff; }
+    .workflow-header.wf-denied   { background: linear-gradient(135deg, #7F1D1D, #B91C1C); color: #fff; }
+    .workflow-header .wf-icon { font-size: 1.5rem; }
+    .workflow-header .wf-title { font-weight: 700; font-size: 0.95rem; }
+    .workflow-header .wf-subtitle { font-size: 0.78rem; opacity: 0.75; margin-top: 1px; }
+
+    .reviewer-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.875rem 1rem;
+      background: var(--cap-gray);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .reviewer-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cap-dark), var(--cap-blue));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.1rem; font-weight: 700; flex-shrink: 0;
+    }
+    .reviewer-name  { font-weight: 600; font-size: 0.875rem; }
+    .reviewer-role  { font-size: 0.75rem; color: var(--cap-muted); }
+    .status-pill {
+      margin-left: auto;
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+    }
+    .status-pill.pending   { background: rgba(245,124,0,0.12); color: var(--cap-warning); }
+    .status-pill.approved  { background: rgba(0,165,80,0.12);  color: var(--cap-success); }
+    .status-pill.denied    { background: rgba(211,47,47,0.12);  color: var(--cap-danger); }
+    .status-pill.acked     { background: rgba(0,112,173,0.12);  color: var(--cap-blue); }
+
+    .workflow-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+    .btn-wf-approve {
+      background: var(--cap-success); color: #fff; border: none;
+      padding: 0.6rem 1.25rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-wf-approve:hover { background: #008F45; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,165,80,0.3); }
+    .btn-wf-approve:disabled { background: #9BA8B5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .btn-wf-deny {
+      background: transparent; color: var(--cap-danger); border: 1.5px solid var(--cap-danger);
+      padding: 0.55rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-wf-deny:hover { background: rgba(211,47,47,0.06); }
+
+    .btn-wf-pdf {
+      background: transparent; color: var(--cap-blue); border: 1.5px solid var(--cap-blue);
+      padding: 0.55rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-wf-pdf:hover { background: rgba(0,112,173,0.06); }
+
+    .btn-wf-ack {
+      background: linear-gradient(135deg, var(--cap-dark), var(--cap-blue)); color: #fff; border: none;
+      padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-wf-ack:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,31,91,0.3); }
+    .btn-wf-ack:disabled { background: #9BA8B5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Payment steps */
+    .payment-steps { display: flex; flex-direction: column; gap: 6px; margin: 0.875rem 0; }
+    .payment-step  { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--cap-muted); }
+    .payment-step.done    { color: var(--cap-success); }
+    .payment-step.running { color: var(--cap-blue); }
+    .pstep-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; flex-shrink: 0; background: #E8ECF0; color: #9BA8B5;
+    }
+    .payment-step.done    .pstep-icon { background: var(--cap-success); color: #fff; }
+    .payment-step.running .pstep-icon { background: var(--cap-blue); color: #fff; animation: pulse-ring 1s ease-in-out infinite; }
+
+    /* Result boxes */
+    .wf-result {
+      border-radius: 10px; padding: 1.125rem; margin-top: 1rem;
+      display: none;
+    }
+    .wf-result.show { display: block; animation: fadeInUp 0.35s ease forwards; }
+    .wf-result.payment-success { background: rgba(0,165,80,0.06); border: 1px solid rgba(0,165,80,0.25); }
+    .wf-result.ack-success     { background: rgba(0,112,173,0.06); border: 1px solid rgba(0,112,173,0.25); }
+    .wf-result.override-result { background: rgba(211,47,47,0.06); border: 1px solid rgba(211,47,47,0.25); }
+    .wf-result-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.625rem; }
+    .wf-result.payment-success .wf-result-title { color: var(--cap-success); }
+    .wf-result.ack-success     .wf-result-title { color: var(--cap-blue); }
+    .wf-result.override-result .wf-result-title { color: var(--cap-danger); }
+    .txn-row { display: flex; gap: 1rem; padding: 3px 0; font-size: 0.82rem; }
+    .txn-key { color: var(--cap-muted); width: 150px; flex-shrink: 0; }
+    .txn-val { font-weight: 600; }
+
     /* ── Responsive ───────────────────────────────────────────────────────── */
     @media (max-width: 768px) {
       .hero h1 { font-size: 1.6rem; }
@@ -755,7 +868,7 @@
   <div id="section-demo" class="section fade-in-up">
     <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">AI Pipeline Demo</h2>
     <p style="color:var(--cap-muted); font-size:0.875rem; margin-bottom:1.5rem;">
-      Select a claim and watch the multi-agent AI pipeline process it in real time — from image ingestion to coverage decision.
+      Select a claim and watch the multi-agent AI pipeline process it in real time — from image ingestion to coverage decision, followed by the <strong>human approval workflow</strong> for payout authorization or denial acknowledgement.
     </p>
 
     <div style="display:grid; grid-template-columns:1fr 380px; gap:1.5rem; align-items:start;">
@@ -787,6 +900,8 @@
             </div>
             <div class="pipeline-container" id="pipelineSteps"></div>
             <div class="decision-card" id="decisionCard"></div>
+            <!-- Human workflow panel (shown after pipeline completes) -->
+            <div class="workflow-card" id="humanWorkflowCard"></div>
           </div>
         </div>
       </div>
@@ -866,6 +981,12 @@
             <div class="node-title">Decision Report</div>
             <div class="node-subtitle">APPROVED / DENIED</div>
           </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#1a2332,#2d3f55);">
+            <div class="node-icon">👤</div>
+            <div class="node-title">Human Review</div>
+            <div class="node-subtitle">Approve &amp; Pay / Acknowledge</div>
+          </div>
         </div>
       </div>
     </div>
@@ -877,7 +998,7 @@
           <div style="display:flex; flex-direction:column; gap:0.875rem;">
             <div style="display:flex; align-items:center; gap:12px;">
               <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🏗️</div>
-              <div><div style="font-weight:600;font-size:0.875rem;">Microsoft Foundry</div><div style="font-size:0.78rem;color:var(--cap-muted);">Agent creation, evaluation, OpenTelemetry tracing</div></div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Azure AI Foundry</div><div style="font-size:0.78rem;color:var(--cap-muted);">Agent creation, evaluation, OpenTelemetry tracing</div></div>
             </div>
             <div style="display:flex; align-items:center; gap:12px;">
               <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🔍</div>
@@ -1056,6 +1177,7 @@ function renderHeroPipeline() {
     { icon: '🔎', label: 'Policy Matching', color: '#00796B' },
     { icon: '⚖️', label: 'Coverage Validation', color: '#F57C00' },
     { icon: '📋', label: 'Decision', color: '#00A550' },
+    { icon: '👤', label: 'Human Review', color: '#2d3f55' },
   ];
   const wrap = document.getElementById('heroPipeline');
   wrap.innerHTML = steps.map(s => `
@@ -1554,6 +1676,10 @@ async function runPipeline() {
   statusEl.textContent = `✓ Pipeline complete in ~${(PIPELINE_STEPS_META.reduce((s,m)=>s+m.duration,0)/1000).toFixed(1)}s`;
   statusEl.style.color = 'var(--cap-success)';
   isPipelineRunning = false;
+
+  // Show human workflow panel
+  await sleep(400);
+  showHumanWorkflow(claim);
 }
 
 function resetPipeline() {
@@ -1562,6 +1688,7 @@ function resetPipeline() {
   const progressWrap = document.getElementById('progressBarWrap');
   const progressFill = document.getElementById('progressFill');
   const statusEl = document.getElementById('pipelineStatus');
+  const workflowCard = document.getElementById('humanWorkflowCard');
 
   if (stepsContainer) stepsContainer.innerHTML = `
     <div style="text-align:center;padding:2rem;color:var(--cap-muted);">
@@ -1570,6 +1697,7 @@ function resetPipeline() {
     </div>
   `;
   if (decisionCard) decisionCard.classList.remove('show');
+  if (workflowCard) { workflowCard.classList.remove('show'); workflowCard.innerHTML = ''; }
   if (progressWrap) progressWrap.style.display = 'none';
   if (progressFill) progressFill.style.width = '0%';
   if (statusEl) statusEl.textContent = '';
@@ -1581,6 +1709,324 @@ function resetPipeline() {
 function openDemo(claimId) {
   showSection('demo');
   setTimeout(() => selectClaim(claimId), 100);
+}
+
+// ── Human Workflow ────────────────────────────────────────────────────────────
+function showHumanWorkflow(claim) {
+  const card = document.getElementById('humanWorkflowCard');
+  if (!card) return;
+  const isApproved = claim.decision.outcome === 'APPROVED';
+  const txnId = 'TXN-' + Date.now().toString(36).toUpperCase() + '-' + claim.claim_number.replace('CLM-', '');
+  const ackId = 'ACK-2025-' + claim.claim_number.replace('CLM-2025-', '') + '-001';
+
+  if (isApproved) {
+    card.innerHTML = `
+      <div class="workflow-header wf-approved">
+        <span class="wf-icon">👤</span>
+        <div>
+          <div class="wf-title">Human Review Required</div>
+          <div class="wf-subtitle">AI recommendation approved — human sign-off required before payout</div>
+        </div>
+      </div>
+      <div style="padding:1.25rem 1.5rem;">
+        <div class="reviewer-card">
+          <div class="reviewer-avatar">MS</div>
+          <div>
+            <div class="reviewer-name">Maria Santos</div>
+            <div class="reviewer-role">Senior Claims Adjuster · Capgemini Insurance Division</div>
+          </div>
+          <span class="status-pill pending" id="wf-status-pill">⏳ Awaiting Review</span>
+        </div>
+        <div style="font-size:0.875rem;color:var(--cap-muted);margin-bottom:1rem;line-height:1.6;">
+          The AI pipeline has recommended <strong style="color:var(--cap-success);">APPROVAL</strong> with an estimated payout of
+          <strong>$${claim.decision.payout_estimate.toLocaleString()}</strong>.
+          Please review the claim summary and authorize the payout, or override the AI decision if required.
+        </div>
+
+        <!-- Payment processing steps (shown while processing) -->
+        <div id="wfPaymentSteps" style="display:none;" class="payment-steps">
+          <div class="payment-step" id="wfps-0"><div class="pstep-icon">1</div> Verifying reviewer identity</div>
+          <div class="payment-step" id="wfps-1"><div class="pstep-icon">2</div> Checking policy limits &amp; deductible</div>
+          <div class="payment-step" id="wfps-2"><div class="pstep-icon">3</div> Running fraud &amp; compliance check</div>
+          <div class="payment-step" id="wfps-3"><div class="pstep-icon">4</div> Generating payment instruction</div>
+          <div class="payment-step" id="wfps-4"><div class="pstep-icon">5</div> Sending transfer to claimant bank</div>
+        </div>
+
+        <!-- Payment result -->
+        <div class="wf-result payment-success" id="wfPaymentResult">
+          <div class="wf-result-title">✅ Payout Authorized &amp; Payment Initiated</div>
+          <div class="txn-row"><div class="txn-key">Authorized by</div><div class="txn-val">Maria Santos (m.santos@capgemini.com)</div></div>
+          <div class="txn-row"><div class="txn-key">Amount</div><div class="txn-val" style="color:var(--cap-success);font-size:1.05rem;">$${claim.decision.payout_estimate.toLocaleString()}.00</div></div>
+          <div class="txn-row"><div class="txn-key">Method</div><div class="txn-val">Bank Transfer (ACH)</div></div>
+          <div class="txn-row"><div class="txn-key">Account</div><div class="txn-val">****${Math.floor(1000 + Math.random()*9000)}</div></div>
+          <div class="txn-row"><div class="txn-key">Transaction ID</div><div class="txn-val" style="font-family:monospace;">${txnId}</div></div>
+          <div class="txn-row"><div class="txn-key">Expected arrival</div><div class="txn-val">2–3 business days</div></div>
+          <div class="txn-row"><div class="txn-key">Claim reference</div><div class="txn-val">${claim.claim_number}</div></div>
+          <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid rgba(0,165,80,0.2);font-size:0.78rem;color:var(--cap-muted);">
+            A confirmation has been sent to <strong>${claim.claimant.email}</strong> and all documentation has been filed.
+          </div>
+        </div>
+
+        <!-- Override result -->
+        <div class="wf-result override-result" id="wfOverrideResult">
+          <div class="wf-result-title">❌ AI Decision Overridden by Reviewer</div>
+          <div class="txn-row"><div class="txn-key">Overridden by</div><div class="txn-val">Maria Santos</div></div>
+          <div class="txn-row"><div class="txn-key">Override reason</div><div class="txn-val">Additional documentation required</div></div>
+          <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid rgba(211,47,47,0.2);font-size:0.78rem;color:var(--cap-muted);">
+            The claimant will be notified by email with instructions for next steps.
+          </div>
+        </div>
+
+        <div class="workflow-actions" id="wfActions">
+          <button class="btn-wf-pdf" onclick="downloadClaimPDF('${claim.id}')">
+            <i class="bi bi-file-earmark-pdf"></i> Download Claim PDF
+          </button>
+          <button class="btn-wf-approve" id="wfApproveBtn" onclick="approveAndPay('${claim.id}')">
+            <i class="bi bi-check-circle-fill"></i> Approve &amp; Initiate Payout
+          </button>
+          <button class="btn-wf-deny" id="wfDenyBtn" onclick="overrideDeny('${claim.id}')">
+            <i class="bi bi-x-circle"></i> Override: Deny
+          </button>
+        </div>
+      </div>
+    `;
+  } else {
+    card.innerHTML = `
+      <div class="workflow-header wf-denied">
+        <span class="wf-icon">📋</span>
+        <div>
+          <div class="wf-title">Denial Notification — Claimant Action Required</div>
+          <div class="wf-subtitle">Claim has been denied · Acknowledgement required from claimant</div>
+        </div>
+      </div>
+      <div style="padding:1.25rem 1.5rem;">
+        <div class="reviewer-card">
+          <div class="reviewer-avatar" style="background:linear-gradient(135deg,#7F1D1D,#B91C1C);">MS</div>
+          <div>
+            <div class="reviewer-name">Maria Santos</div>
+            <div class="reviewer-role">Senior Claims Adjuster · Capgemini Insurance Division</div>
+          </div>
+          <span class="status-pill denied" id="wf-status-pill">❌ Claim Denied</span>
+        </div>
+        <div style="font-size:0.875rem;color:var(--cap-muted);margin-bottom:1rem;line-height:1.6;">
+          The AI pipeline has determined this claim does not meet the coverage criteria of policy
+          <strong>${claim.policy.number}</strong>. A formal denial letter has been prepared.
+          The claimant must confirm receipt of this decision to complete the process.
+        </div>
+
+        <div style="background:rgba(211,47,47,0.05);border:1px solid rgba(211,47,47,0.2);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+          <div style="font-weight:600;font-size:0.875rem;color:var(--cap-danger);margin-bottom:6px;">Denial Reasons</div>
+          ${claim.decision.exclusions_triggered.map(e =>
+            `<div style="font-size:0.82rem;color:var(--cap-text);padding:2px 0;">• ${e}</div>`
+          ).join('')}
+          <div style="margin-top:0.625rem;font-size:0.82rem;color:var(--cap-muted);">
+            <strong>Next steps:</strong> ${claim.decision.recommendation}
+          </div>
+        </div>
+
+        <!-- Acknowledgement result -->
+        <div class="wf-result ack-success" id="wfAckResult">
+          <div class="wf-result-title">✅ Acknowledgement Recorded</div>
+          <div class="txn-row"><div class="txn-key">Claimant</div><div class="txn-val">${claim.claimant.name}</div></div>
+          <div class="txn-row"><div class="txn-key">Reference</div><div class="txn-val" style="font-family:monospace;">${ackId}</div></div>
+          <div class="txn-row"><div class="txn-key">Timestamp</div><div class="txn-val" id="ackTimestamp"></div></div>
+          <div class="txn-row"><div class="txn-key">Claim reference</div><div class="txn-val">${claim.claim_number}</div></div>
+          <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid rgba(0,112,173,0.2);font-size:0.78rem;color:var(--cap-muted);">
+            You may appeal this decision within <strong>30 days</strong> by contacting your claims handler.
+            A confirmation has been emailed to <strong>${claim.claimant.email}</strong>.
+          </div>
+        </div>
+
+        <div class="workflow-actions" id="wfActions">
+          <button class="btn-wf-pdf" onclick="downloadClaimPDF('${claim.id}')">
+            <i class="bi bi-file-earmark-pdf"></i> Download Denial Letter
+          </button>
+          <button class="btn-wf-ack" id="wfAckBtn" onclick="acknowledgeRejection('${claim.id}')">
+            <i class="bi bi-check2-square"></i> I Acknowledge This Decision
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  card.classList.add('show');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function approveAndPay(claimId) {
+  const approveBtn = document.getElementById('wfApproveBtn');
+  const denyBtn    = document.getElementById('wfDenyBtn');
+  const stepsWrap  = document.getElementById('wfPaymentSteps');
+  const resultDiv  = document.getElementById('wfPaymentResult');
+  const statusPill = document.getElementById('wf-status-pill');
+  const actions    = document.getElementById('wfActions');
+
+  if (!approveBtn) return;
+  approveBtn.disabled = true;
+  if (denyBtn) denyBtn.disabled = true;
+  stepsWrap.style.display = 'flex';
+
+  const steps = ['wfps-0','wfps-1','wfps-2','wfps-3','wfps-4'];
+  const durations = [600, 700, 800, 600, 900];
+
+  for (let i = 0; i < steps.length; i++) {
+    const el = document.getElementById(steps[i]);
+    if (el) {
+      el.className = 'payment-step running';
+      el.querySelector('.pstep-icon').innerHTML = '<div class="spinner-sm" style="border-color:rgba(255,255,255,0.3);border-top-color:#fff;"></div>';
+    }
+    await sleep(durations[i]);
+    if (el) {
+      el.className = 'payment-step done';
+      el.querySelector('.pstep-icon').textContent = '✓';
+    }
+  }
+
+  if (statusPill) { statusPill.className = 'status-pill approved'; statusPill.textContent = '✅ Approved & Paid'; }
+  if (actions) actions.style.display = 'none';
+  resultDiv.classList.add('show');
+}
+
+async function overrideDeny(claimId) {
+  const approveBtn = document.getElementById('wfApproveBtn');
+  const denyBtn    = document.getElementById('wfDenyBtn');
+  const resultDiv  = document.getElementById('wfOverrideResult');
+  const statusPill = document.getElementById('wf-status-pill');
+  const actions    = document.getElementById('wfActions');
+
+  if (approveBtn) approveBtn.disabled = true;
+  if (denyBtn) denyBtn.disabled = true;
+  await sleep(500);
+  if (statusPill) { statusPill.className = 'status-pill denied'; statusPill.textContent = '❌ Decision Overridden'; }
+  if (actions) actions.style.display = 'none';
+  if (resultDiv) resultDiv.classList.add('show');
+}
+
+async function acknowledgeRejection(claimId) {
+  const ackBtn     = document.getElementById('wfAckBtn');
+  const resultDiv  = document.getElementById('wfAckResult');
+  const statusPill = document.getElementById('wf-status-pill');
+  const actions    = document.getElementById('wfActions');
+  const tsEl       = document.getElementById('ackTimestamp');
+
+  if (ackBtn) ackBtn.disabled = true;
+  await sleep(600);
+  if (tsEl) tsEl.textContent = new Date().toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' }) + ' UTC';
+  if (statusPill) { statusPill.className = 'status-pill acked'; statusPill.textContent = '✅ Acknowledged'; }
+  if (actions) actions.style.display = 'none';
+  if (resultDiv) resultDiv.classList.add('show');
+}
+
+function downloadClaimPDF(claimId) {
+  const claim = claimDetailCache[claimId];
+  if (!claim) return;
+  const dec = claim.decision;
+  const isApproved = dec.outcome === 'APPROVED';
+  const now = new Date().toLocaleDateString('en-GB', { dateStyle: 'long' });
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>${isApproved ? 'Claim Approval' : 'Claim Denial'} — ${claim.claim_number}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #1A2332; font-size: 13px; }
+    .header { border-bottom: 3px solid #0070AD; padding-bottom: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .brand { font-size: 22px; font-weight: 800; color: #001F5B; }
+    .brand-sub { font-size: 11px; color: #6B7B8D; margin-top: 2px; }
+    .doc-title { font-size: 17px; font-weight: 700; text-align: right; }
+    .doc-title .badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; margin-top: 4px; }
+    .approved-badge { background: #d4edda; color: #155724; }
+    .denied-badge   { background: #f8d7da; color: #721c24; }
+    .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6B7B8D; margin: 20px 0 8px; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; }
+    .row { display: flex; gap: 12px; margin-bottom: 5px; }
+    .key { color: #6B7B8D; width: 160px; flex-shrink: 0; }
+    .val { font-weight: 600; flex: 1; }
+    .decision-box { border-radius: 8px; padding: 16px; margin: 20px 0; }
+    .decision-box.approved { background: #d4edda; border: 1px solid #c3e6cb; }
+    .decision-box.denied   { background: #f8d7da; border: 1px solid #f5c6cb; }
+    .reasoning { font-style: italic; margin-top: 8px; font-size: 12px; color: #4a5568; }
+    .footer { margin-top: 36px; border-top: 1px solid #E2E8F0; padding-top: 12px; font-size: 11px; color: #6B7B8D; }
+    @media print { body { margin: 20px; } button { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="brand">capgemini</div>
+      <div class="brand-sub">Claims Intelligence Platform · Insurance Division</div>
+    </div>
+    <div class="doc-title">
+      ${isApproved ? 'Claim Approval Notice' : 'Claim Denial Notice'}<br/>
+      <span class="badge ${isApproved ? 'approved-badge' : 'denied-badge'}">${dec.outcome}</span>
+    </div>
+  </div>
+
+  <div class="section-title">Document Information</div>
+  <div class="row"><div class="key">Claim Reference</div><div class="val">${claim.claim_number}</div></div>
+  <div class="row"><div class="key">Issue Date</div><div class="val">${now}</div></div>
+  <div class="row"><div class="key">Processed Date</div><div class="val">${claim.processed_date}</div></div>
+  <div class="row"><div class="key">Processing Method</div><div class="val">AI-Assisted (Capgemini Claims Intelligence Platform)</div></div>
+
+  <div class="section-title">Claimant Information</div>
+  <div class="row"><div class="key">Name</div><div class="val">${claim.claimant.name}</div></div>
+  <div class="row"><div class="key">Phone</div><div class="val">${claim.claimant.phone}</div></div>
+  <div class="row"><div class="key">Address</div><div class="val">${claim.claimant.address}</div></div>
+  <div class="row"><div class="key">Email</div><div class="val">${claim.claimant.email}</div></div>
+
+  <div class="section-title">Policy Information</div>
+  <div class="row"><div class="key">Policy Number</div><div class="val">${claim.policy.number}</div></div>
+  <div class="row"><div class="key">Policy Type</div><div class="val">${claim.policy.type}</div></div>
+
+  <div class="section-title">Vehicle Information</div>
+  <div class="row"><div class="key">Vehicle</div><div class="val">${claim.vehicle.year} ${claim.vehicle.make} ${claim.vehicle.model} (${claim.vehicle.color})</div></div>
+  <div class="row"><div class="key">VIN</div><div class="val">${claim.vehicle.vin}</div></div>
+  <div class="row"><div class="key">License Plate</div><div class="val">${claim.vehicle.plate}</div></div>
+
+  <div class="section-title">Incident Details</div>
+  <div class="row"><div class="key">Date &amp; Time</div><div class="val">${claim.incident.date} at ${claim.incident.time}</div></div>
+  <div class="row"><div class="key">Location</div><div class="val">${claim.incident.location}</div></div>
+  <div class="row"><div class="key">Police Report</div><div class="val">#${claim.incident.police_report}</div></div>
+  <div class="row"><div class="key">Description</div><div class="val">${claim.incident.description}</div></div>
+
+  <div class="section-title">Damage Assessment</div>
+  <div class="row"><div class="key">Severity</div><div class="val">${claim.damage.severity.charAt(0).toUpperCase() + claim.damage.severity.slice(1)}</div></div>
+  <div class="row"><div class="key">Estimated Repair Cost</div><div class="val">$${claim.damage.estimated_repair_cost.toLocaleString()}</div></div>
+  <div class="row"><div class="key">Affected Areas</div><div class="val">${claim.damage.affected_areas.join(', ')}</div></div>
+
+  <div class="decision-box ${isApproved ? 'approved' : 'denied'}">
+    <strong style="font-size:15px;">${isApproved ? '✅ CLAIM APPROVED' : '❌ CLAIM DENIED'}</strong><br/>
+    <strong>Coverage:</strong> ${dec.applicable_coverage}<br/>
+    ${isApproved ? `
+      <strong>Deductible:</strong> ${dec.deductible} &nbsp;|&nbsp;
+      <strong>Coverage Limit:</strong> ${dec.coverage_limit} &nbsp;|&nbsp;
+      <strong>Estimated Payout:</strong> $${dec.payout_estimate.toLocaleString()}
+    ` : `
+      <strong>Exclusions Triggered:</strong> ${dec.exclusions_triggered.join('; ')}
+    `}
+    <div class="reasoning">${dec.reasoning}</div>
+  </div>
+
+  ${!isApproved ? `
+    <div class="section-title">Recommended Next Steps</div>
+    <p style="font-size:12px;line-height:1.7;">${dec.recommendation}</p>
+    <p style="font-size:12px;color:#4a5568;">You have the right to appeal this decision within <strong>30 days</strong> of this letter's issue date. Please contact your claims handler for assistance.</p>
+  ` : ''}
+
+  <div class="footer">
+    This document was generated by the Capgemini Claims Intelligence Platform.
+    Claim reference: ${claim.claim_number} &nbsp;·&nbsp; Generated: ${new Date().toISOString()}
+    <br/>For queries, contact: claims@capgemini-insurance.com &nbsp;|&nbsp; +1 (800) 555-0190
+  </div>
+
+  <script>window.onload = function() { setTimeout(function() { window.print(); }, 800); }<\/script>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url, '_blank');
+  if (!win) alert('Please allow pop-ups to download the PDF.');
 }
 
 // ── Policies ──────────────────────────────────────────────────────────────────
