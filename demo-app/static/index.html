@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claims Intelligence Platform | Capgemini</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Capgemini Brand Variables ─────────────────────────────────────────── */
+    :root {
+      --cap-blue:    #0070AD;
+      --cap-dark:    #001F5B;
+      --cap-sky:     #00ADEF;
+      --cap-success: #00A550;
+      --cap-danger:  #D32F2F;
+      --cap-warning: #F57C00;
+      --cap-partial: #7B1FA2;
+      --cap-gray:    #F4F6F9;
+      --cap-text:    #1A2332;
+      --cap-muted:   #6B7B8D;
+      --cap-border:  #E2E8F0;
+      --cap-card-shadow: 0 2px 16px rgba(0,31,91,0.08);
+    }
+
+    /* ── Base ──────────────────────────────────────────────────────────────── */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cap-gray);
+      color: var(--cap-text);
+      margin: 0;
+    }
+    a { text-decoration: none; }
+
+    /* ── Navbar ───────────────────────────────────────────────────────────── */
+    .navbar-cap {
+      background: var(--cap-dark);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .navbar-cap .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .navbar-cap .brand .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .logo-bar { width: 8px; height: 28px; border-radius: 2px; }
+    .logo-bar-1 { background: #0070AD; }
+    .logo-bar-2 { background: #E53935; }
+    .logo-bar-3 { background: #0070AD; }
+    .navbar-cap .tagline {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+    .nav-pills-cap { display: flex; gap: 4px; margin-left: auto; }
+    .nav-pills-cap .nav-btn {
+      color: rgba(255,255,255,0.65);
+      background: transparent;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-pills-cap .nav-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .nav-pills-cap .nav-btn.active {
+      color: #fff;
+      background: var(--cap-blue);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--cap-dark) 0%, #003380 50%, var(--cap-blue) 100%);
+      padding: 3rem 2rem 2.5rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(0,174,239,0.12);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 20%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero p.lead { font-size: 1rem; opacity: 0.85; max-width: 520px; margin-bottom: 1.5rem; }
+    .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+    .hero-stat { text-align: center; }
+    .hero-stat .value { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .hero-stat .label { font-size: 0.75rem; opacity: 0.7; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── Section Tabs ─────────────────────────────────────────────────────── */
+    .section-nav {
+      background: #fff;
+      border-bottom: 1px solid var(--cap-border);
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+    }
+    .section-tab {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cap-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .section-tab:hover { color: var(--cap-blue); }
+    .section-tab.active { color: var(--cap-blue); border-bottom-color: var(--cap-blue); font-weight: 600; }
+
+    /* ── Container ────────────────────────────────────────────────────────── */
+    .main-content { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* ── Cards ────────────────────────────────────────────────────────────── */
+    .card-cap {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--cap-card-shadow);
+      border: 1px solid var(--cap-border);
+      overflow: hidden;
+    }
+    .card-cap .card-header-cap {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--cap-border);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── KPI Cards ────────────────────────────────────────────────────────── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .kpi-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--cap-card-shadow);
+      border: 1px solid var(--cap-border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .kpi-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .kpi-icon.blue   { background: rgba(0,112,173,0.1); }
+    .kpi-icon.green  { background: rgba(0,165,80,0.1); }
+    .kpi-icon.red    { background: rgba(211,47,47,0.1); }
+    .kpi-icon.orange { background: rgba(245,124,0,0.1); }
+    .kpi-icon.purple { background: rgba(123,31,162,0.1); }
+    .kpi-value { font-size: 1.75rem; font-weight: 800; line-height: 1; }
+    .kpi-label { font-size: 0.78rem; color: var(--cap-muted); margin-top: 2px; }
+    .kpi-trend { font-size: 0.75rem; margin-top: 4px; }
+
+    /* ── Status Badges ────────────────────────────────────────────────────── */
+    .badge-status {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+    .badge-approved { background: rgba(0,165,80,0.12); color: var(--cap-success); }
+    .badge-denied   { background: rgba(211,47,47,0.12); color: var(--cap-danger); }
+    .badge-pending  { background: rgba(245,124,0,0.12); color: var(--cap-warning); }
+    .badge-partial  { background: rgba(123,31,162,0.12); color: var(--cap-partial); }
+
+    .severity-severe   { color: var(--cap-danger); }
+    .severity-moderate { color: var(--cap-warning); }
+    .severity-minor    { color: var(--cap-success); }
+
+    /* ── Claims Table ─────────────────────────────────────────────────────── */
+    .claims-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .claims-table th {
+      background: var(--cap-gray);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--cap-muted);
+      border-bottom: 1px solid var(--cap-border);
+    }
+    .claims-table td { padding: 0.875rem 1rem; border-bottom: 1px solid var(--cap-border); }
+    .claims-table tr:hover td { background: rgba(0,112,173,0.03); cursor: pointer; }
+    .claims-table tr:last-child td { border-bottom: none; }
+
+    /* ── Pipeline ─────────────────────────────────────────────────────────── */
+    .pipeline-container { display: flex; flex-direction: column; gap: 0; }
+    .pipeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      position: relative;
+    }
+    .pipeline-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 64px;
+      bottom: 0;
+      width: 2px;
+      background: var(--cap-border);
+    }
+    .pipeline-step.done::after { background: var(--cap-success); }
+    .step-circle {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+    .step-circle.waiting   { background: #E8ECF0; color: #9BA8B5; }
+    .step-circle.running   { background: var(--cap-blue); color: #fff; animation: pulse-ring 1s ease-in-out infinite; }
+    .step-circle.done      { background: var(--cap-success); color: #fff; }
+    .step-circle.error     { background: var(--cap-danger); color: #fff; }
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(0,112,173,0.4); }
+      70%  { box-shadow: 0 0 0 12px rgba(0,112,173,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,112,173,0); }
+    }
+    .step-content { flex: 1; }
+    .step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+    .step-subtitle { font-size: 0.8rem; color: var(--cap-muted); }
+    .step-result {
+      margin-top: 0.75rem;
+      padding: 0.875rem 1rem;
+      background: var(--cap-gray);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      border-left: 3px solid var(--cap-blue);
+      display: none;
+    }
+    .step-result.show { display: block; }
+    .step-result.success { border-left-color: var(--cap-success); }
+    .step-result.error   { border-left-color: var(--cap-danger); }
+
+    /* ── Spinner ──────────────────────────────────────────────────────────── */
+    .spinner-sm {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Decision Card ────────────────────────────────────────────────────── */
+    .decision-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      display: none;
+    }
+    .decision-card.show { display: block; }
+    .decision-card.approved {
+      background: linear-gradient(135deg, #00A550 0%, #00C060 100%);
+      color: #fff;
+    }
+    .decision-card.denied {
+      background: linear-gradient(135deg, #D32F2F 0%, #E53935 100%);
+      color: #fff;
+    }
+    .decision-card .decision-title { font-size: 1.5rem; font-weight: 800; }
+    .decision-card .decision-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem;
+    }
+
+    /* ── Claim Detail Modal ───────────────────────────────────────────────── */
+    .detail-section { margin-bottom: 1.5rem; }
+    .detail-section h6 {
+      font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--cap-muted); margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--cap-border);
+    }
+    .detail-row { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+    .detail-key { font-size: 0.82rem; color: var(--cap-muted); width: 160px; flex-shrink: 0; }
+    .detail-val { font-size: 0.85rem; font-weight: 500; }
+
+    /* ── JSON Viewer ──────────────────────────────────────────────────────── */
+    .json-box {
+      background: #1a1f2e;
+      color: #d4e0f0;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      max-height: 260px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .json-key   { color: #79c0ff; }
+    .json-str   { color: #a5d6a7; }
+    .json-num   { color: #ffd580; }
+    .json-bool-true  { color: #79c0ff; }
+    .json-bool-false { color: #f47067; }
+
+    /* ── Policy Cards ─────────────────────────────────────────────────────── */
+    .policy-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--cap-border);
+      box-shadow: var(--cap-card-shadow);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .policy-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,31,91,0.12); }
+    .policy-card .policy-header {
+      background: linear-gradient(135deg, var(--cap-dark), var(--cap-blue));
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+    }
+    .policy-card .policy-code { font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+    .policy-card .policy-name { font-size: 1.05rem; font-weight: 700; margin-top: 2px; }
+    .policy-card .policy-category { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; }
+    .policy-card .policy-body { padding: 1.25rem 1.5rem; }
+    .policy-card .premium { font-size: 1.75rem; font-weight: 800; color: var(--cap-blue); }
+    .policy-card .premium span { font-size: 0.8rem; color: var(--cap-muted); font-weight: 400; }
+    .coverage-list { list-style: none; padding: 0; margin: 0; font-size: 0.82rem; }
+    .coverage-list li { padding: 3px 0; display: flex; align-items: flex-start; gap: 6px; }
+    .coverage-list li::before { content: '✓'; color: var(--cap-success); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .exclusion-list li::before { content: '✗'; color: var(--cap-danger); }
+
+    /* ── Architecture ─────────────────────────────────────────────────────── */
+    .arch-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+    .arch-node {
+      background: linear-gradient(135deg, var(--cap-dark), var(--cap-blue));
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.25rem;
+      min-width: 140px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .arch-node .node-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .arch-node .node-title { font-weight: 700; font-size: 0.85rem; }
+    .arch-node .node-subtitle { font-size: 0.7rem; opacity: 0.75; margin-top: 2px; }
+    .arch-arrow {
+      display: flex; align-items: center;
+      color: var(--cap-muted); font-size: 1.5rem;
+      padding: 0 0.5rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Claim Selector ───────────────────────────────────────────────────── */
+    .claim-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .claim-tile {
+      background: #fff;
+      border: 2px solid var(--cap-border);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .claim-tile:hover { border-color: var(--cap-blue); background: rgba(0,112,173,0.03); }
+    .claim-tile.selected { border-color: var(--cap-blue); background: rgba(0,112,173,0.05); box-shadow: 0 0 0 3px rgba(0,112,173,0.15); }
+    .claim-tile .tile-id { font-size: 0.75rem; color: var(--cap-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .claim-tile .tile-name { font-weight: 600; font-size: 0.9rem; margin-top: 2px; }
+    .claim-tile .tile-vehicle { font-size: 0.78rem; color: var(--cap-muted); margin-top: 2px; }
+
+    /* ── Utility ──────────────────────────────────────────────────────────── */
+    .text-cap-blue { color: var(--cap-blue); }
+    .text-muted-cap { color: var(--cap-muted); }
+    .bg-cap-gray { background: var(--cap-gray); }
+    .btn-cap-primary {
+      background: var(--cap-blue); color: #fff; border: none;
+      padding: 0.625rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-cap-primary:hover { background: #0060A0; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,112,173,0.3); }
+    .btn-cap-primary:disabled { background: #9BA8B5; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-cap-outline {
+      background: transparent; color: var(--cap-blue); border: 1.5px solid var(--cap-blue);
+      padding: 0.575rem 1.25rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-cap-outline:hover { background: rgba(0,112,173,0.06); }
+    .divider { border: none; border-top: 1px solid var(--cap-border); margin: 1.5rem 0; }
+    .chip {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 500;
+    }
+    .chip-blue { background: rgba(0,112,173,0.1); color: var(--cap-blue); }
+    .chip-red  { background: rgba(211,47,47,0.1); color: var(--cap-danger); }
+    .chip-gray { background: var(--cap-gray); color: var(--cap-muted); }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.6rem; }
+      .nav-pills-cap { display: none; }
+      .section-nav { overflow-x: auto; }
+      .arch-flow { flex-direction: column; }
+      .arch-arrow { transform: rotate(90deg); }
+    }
+
+    /* ── Animations ───────────────────────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 0.4s ease forwards; }
+
+    /* ── Progress bar ─────────────────────────────────────────────────────── */
+    .processing-bar {
+      height: 3px;
+      background: var(--cap-border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .processing-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cap-blue), var(--cap-sky));
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── Cost metric box ──────────────────────────────────────────────────── */
+    .metric-box {
+      background: var(--cap-gray);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric-box .m-val { font-size: 1.5rem; font-weight: 800; color: var(--cap-blue); }
+    .metric-box .m-lbl { font-size: 0.75rem; color: var(--cap-muted); margin-top: 2px; }
+
+    /* ── Donut placeholder chart ──────────────────────────────────────────── */
+    .donut-wrap { position: relative; width: 120px; height: 120px; }
+    .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .donut-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .donut-center .d-val { font-size: 1.3rem; font-weight: 800; }
+    .donut-center .d-lbl { font-size: 0.65rem; color: var(--cap-muted); }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────────────────────── -->
+<nav class="navbar-cap">
+  <div class="brand">
+    <div class="logo-wrap">
+      <div class="logo-bar logo-bar-1"></div>
+      <div class="logo-bar logo-bar-2"></div>
+      <div class="logo-bar logo-bar-3"></div>
+    </div>
+    <span>capgemini</span>
+    <span class="tagline">Claims Intelligence Platform</span>
+  </div>
+  <div class="nav-pills-cap">
+    <button class="nav-btn active" onclick="showSection('dashboard')">Dashboard</button>
+    <button class="nav-btn" onclick="showSection('claims')">Claims</button>
+    <button class="nav-btn" onclick="showSection('demo')">Pipeline Demo</button>
+    <button class="nav-btn" onclick="showSection('policies')">Policies</button>
+    <button class="nav-btn" onclick="showSection('architecture')">Architecture</button>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────────────────────── -->
+<div class="hero" id="heroSection">
+  <div style="max-width:1280px; margin:0 auto; position:relative; z-index:1;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem;">
+      <div>
+        <div style="font-size:0.75rem; opacity:0.6; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.75rem;">Powered by Azure AI Foundry</div>
+        <h1>Intelligent Claims Processing</h1>
+        <p class="lead">
+          Transform insurance claims processing with multi-agent AI systems — from image upload
+          to coverage decision in seconds. Reduce manual effort by 90% while improving consistency and accuracy.
+        </p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button class="btn-cap-primary" onclick="showSection('demo')">
+            <i class="bi bi-play-circle-fill"></i> Run Live Demo
+          </button>
+          <button class="btn-cap-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);" onclick="showSection('claims')">
+            <i class="bi bi-folder2-open"></i> View All Claims
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="value">2.3s</div><div class="label">Avg. Processing</div></div>
+          <div class="hero-stat"><div class="value">98.5%</div><div class="label">Accuracy</div></div>
+          <div class="hero-stat"><div class="value">€847K</div><div class="label">Annual Savings</div></div>
+          <div class="hero-stat"><div class="value">90%</div><div class="label">Less Manual Work</div></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.07); border-radius:16px; padding:1.5rem; min-width:280px; backdrop-filter:blur(8px);">
+        <div style="font-size:0.75rem; opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">AI Pipeline</div>
+        <div id="heroPipeline"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Section Tabs ─────────────────────────────────────────────────────────── -->
+<div class="section-nav">
+  <button class="section-tab active" id="tab-dashboard" onclick="showSection('dashboard')"><i class="bi bi-speedometer2"></i> Dashboard</button>
+  <button class="section-tab" id="tab-claims" onclick="showSection('claims')"><i class="bi bi-folder2-open"></i> Claims</button>
+  <button class="section-tab" id="tab-demo" onclick="showSection('demo')"><i class="bi bi-robot"></i> Pipeline Demo</button>
+  <button class="section-tab" id="tab-policies" onclick="showSection('policies')"><i class="bi bi-shield-check"></i> Policies</button>
+  <button class="section-tab" id="tab-architecture" onclick="showSection('architecture')"><i class="bi bi-diagram-3"></i> Architecture</button>
+</div>
+
+<!-- ── Main Content ─────────────────────────────────────────────────────────── -->
+<div class="main-content">
+
+  <!-- ════════════════════ DASHBOARD ════════════════════ -->
+  <div id="section-dashboard" class="section active fade-in-up">
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon blue">📁</div>
+        <div>
+          <div class="kpi-value text-cap-blue" id="stat-total">—</div>
+          <div class="kpi-label">Total Claims</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon green">✅</div>
+        <div>
+          <div class="kpi-value" style="color:var(--cap-success)" id="stat-approved">—</div>
+          <div class="kpi-label">Approved</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon red">❌</div>
+        <div>
+          <div class="kpi-value" style="color:var(--cap-danger)" id="stat-denied">—</div>
+          <div class="kpi-label">Denied</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon orange">⚡</div>
+        <div>
+          <div class="kpi-value" style="color:var(--cap-warning)" id="stat-time">—</div>
+          <div class="kpi-label">Avg. Processing</div>
+          <div class="kpi-trend" style="color:var(--cap-success)">↓ vs 3 days manual</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon purple">💶</div>
+        <div>
+          <div class="kpi-value" style="color:var(--cap-partial)" id="stat-savings">—</div>
+          <div class="kpi-label">Annual AI Savings</div>
+          <div class="kpi-trend" style="color:var(--cap-success)">↑ 90% cost reduction</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon blue">🎯</div>
+        <div>
+          <div class="kpi-value text-cap-blue" id="stat-accuracy">—</div>
+          <div class="kpi-label">Decision Accuracy</div>
+          <div class="kpi-trend" style="color:var(--cap-muted)">vs 94% manual baseline</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+
+      <!-- Claims by status donut -->
+      <div class="card-cap">
+        <div class="card-header-cap"><i class="bi bi-pie-chart text-cap-blue"></i> Claims by Decision</div>
+        <div style="padding:1.5rem; display:flex; align-items:center; gap:2rem;">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 42 42">
+              <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#E8ECF0" stroke-width="5"/>
+              <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="var(--cap-success)" stroke-width="5"
+                stroke-dasharray="60 40" stroke-dashoffset="0"/>
+              <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="var(--cap-danger)" stroke-width="5"
+                stroke-dasharray="40 60" stroke-dashoffset="-60"/>
+            </svg>
+            <div class="donut-center">
+              <div class="d-val text-cap-blue">5</div>
+              <div class="d-lbl">Claims</div>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <div style="width:12px;height:12px;border-radius:3px;background:var(--cap-success);"></div>
+              <span style="font-size:0.85rem;">Approved (3 · 60%)</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:12px;height:12px;border-radius:3px;background:var(--cap-danger);"></div>
+              <span style="font-size:0.85rem;">Denied (2 · 40%)</span>
+            </div>
+            <div style="margin-top:1.25rem;">
+              <div style="font-size:0.75rem;color:var(--cap-muted); margin-bottom:6px;">Approval Rate</div>
+              <div style="background:var(--cap-border);border-radius:4px;height:8px;">
+                <div style="width:60%;height:8px;border-radius:4px;background:var(--cap-success);"></div>
+              </div>
+              <div style="font-size:0.85rem; font-weight:700; margin-top:4px; color:var(--cap-success);">60%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Before vs After -->
+      <div class="card-cap">
+        <div class="card-header-cap"><i class="bi bi-bar-chart text-cap-blue"></i> Before vs After AI</div>
+        <div style="padding:1.5rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div style="text-align:center; padding:1rem; border-radius:10px; background:rgba(211,47,47,0.05); border:1px solid rgba(211,47,47,0.15);">
+              <div style="font-size:0.72rem; color:var(--cap-muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Manual Process</div>
+              <div style="font-size:2rem; font-weight:800; color:var(--cap-danger);">3 days</div>
+              <div style="font-size:0.78rem; color:var(--cap-muted);">avg. processing time</div>
+              <div style="font-size:1.1rem; font-weight:700; color:var(--cap-danger); margin-top:8px;">94%</div>
+              <div style="font-size:0.72rem; color:var(--cap-muted);">accuracy</div>
+              <div style="font-size:1.1rem; font-weight:700; color:var(--cap-danger); margin-top:8px;">€940K/yr</div>
+              <div style="font-size:0.72rem; color:var(--cap-muted);">processing cost</div>
+            </div>
+            <div style="text-align:center; padding:1rem; border-radius:10px; background:rgba(0,165,80,0.05); border:1px solid rgba(0,165,80,0.2);">
+              <div style="font-size:0.72rem; color:var(--cap-muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">With AI Agents</div>
+              <div style="font-size:2rem; font-weight:800; color:var(--cap-success);">2.3s</div>
+              <div style="font-size:0.78rem; color:var(--cap-muted);">avg. processing time</div>
+              <div style="font-size:1.1rem; font-weight:700; color:var(--cap-success); margin-top:8px;">98.5%</div>
+              <div style="font-size:0.72rem; color:var(--cap-muted);">accuracy</div>
+              <div style="font-size:1.1rem; font-weight:700; color:var(--cap-success); margin-top:8px;">€93K/yr</div>
+              <div style="font-size:0.72rem; color:var(--cap-muted);">processing cost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Claims Table -->
+    <div class="card-cap">
+      <div class="card-header-cap">
+        <i class="bi bi-clock-history text-cap-blue"></i> Recent Claims
+        <button class="btn-cap-outline" style="margin-left:auto; padding:4px 12px; font-size:0.78rem;" onclick="showSection('claims')">View All →</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="claims-table" id="dashRecentTable">
+          <thead>
+            <tr>
+              <th>Claim #</th><th>Claimant</th><th>Vehicle</th><th>Policy</th><th>Severity</th><th>Est. Cost</th><th>Decision</th>
+            </tr>
+          </thead>
+          <tbody id="dashTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════ CLAIMS LIST ════════════════════ -->
+  <div id="section-claims" class="section fade-in-up">
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+      <h2 style="font-size:1.25rem; font-weight:700; margin:0;">Claims Management</h2>
+      <div style="margin-left:auto; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <select id="filterStatus" class="form-select form-select-sm" style="width:auto;" onchange="renderClaimsTable()">
+          <option value="">All Statuses</option>
+          <option value="approved">Approved</option>
+          <option value="denied">Denied</option>
+        </select>
+        <select id="filterPolicy" class="form-select form-select-sm" style="width:auto;" onchange="renderClaimsTable()">
+          <option value="">All Policies</option>
+          <option value="LIAB-AUTO-001">LIAB-AUTO-001</option>
+          <option value="COMM-AUTO-001">COMM-AUTO-001</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-cap">
+      <div style="overflow-x:auto;">
+        <table class="claims-table">
+          <thead>
+            <tr>
+              <th>Claim #</th><th>Date</th><th>Claimant</th><th>Vehicle</th><th>Policy</th>
+              <th>Damage</th><th>Est. Cost</th><th>Decision</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="claimsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════ CLAIM DETAIL (inline) ════════════════════ -->
+  <div id="section-claim-detail" class="section fade-in-up">
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;">
+      <button class="btn-cap-outline" onclick="showSection('claims')" style="padding:6px 12px; font-size:0.82rem;">
+        ← Back to Claims
+      </button>
+      <h2 style="font-size:1.25rem; font-weight:700; margin:0;" id="detailTitle">Claim Detail</h2>
+    </div>
+    <div id="claimDetailContent"></div>
+  </div>
+
+  <!-- ════════════════════ PIPELINE DEMO ════════════════════ -->
+  <div id="section-demo" class="section fade-in-up">
+    <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">AI Pipeline Demo</h2>
+    <p style="color:var(--cap-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+      Select a claim and watch the multi-agent AI pipeline process it in real time — from image ingestion to coverage decision.
+    </p>
+
+    <div style="display:grid; grid-template-columns:1fr 380px; gap:1.5rem; align-items:start;">
+
+      <!-- Left: Selector + Pipeline -->
+      <div>
+        <div class="card-cap" style="margin-bottom:1.5rem;">
+          <div class="card-header-cap"><i class="bi bi-folder2-open text-cap-blue"></i> Select Claim to Process</div>
+          <div style="padding:1.25rem;">
+            <div class="claim-selector" id="claimSelector"></div>
+            <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+              <button class="btn-cap-primary" id="runPipelineBtn" onclick="runPipeline()" disabled>
+                <i class="bi bi-play-fill"></i> Run AI Pipeline
+              </button>
+              <button class="btn-cap-outline" onclick="resetPipeline()">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+              <span id="pipelineStatus" style="font-size:0.82rem; color:var(--cap-muted);"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Steps -->
+        <div class="card-cap" id="pipelineCard">
+          <div class="card-header-cap"><i class="bi bi-cpu text-cap-blue"></i> Processing Pipeline</div>
+          <div style="padding:1.25rem;">
+            <div id="progressBarWrap" style="display:none;">
+              <div class="processing-bar"><div class="processing-bar-fill" id="progressFill" style="width:0%"></div></div>
+            </div>
+            <div class="pipeline-container" id="pipelineSteps"></div>
+            <div class="decision-card" id="decisionCard"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Claim image + info -->
+      <div>
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-image text-cap-blue"></i> Claim Image</div>
+          <div style="padding:1rem; text-align:center;">
+            <img id="claimImage" src="" alt="Select a claim" style="max-width:100%; border-radius:8px; display:none;" />
+            <div id="imagePlaceholder" style="background:var(--cap-gray); border-radius:8px; padding:3rem; color:var(--cap-muted); font-size:0.85rem;">
+              <i class="bi bi-image" style="font-size:2.5rem; display:block; margin-bottom:0.5rem;"></i>
+              Select a claim to view image
+            </div>
+          </div>
+        </div>
+        <div class="card-cap" id="sideClaimInfo" style="display:none;">
+          <div class="card-header-cap"><i class="bi bi-info-circle text-cap-blue"></i> Claim Info</div>
+          <div style="padding:1rem;" id="sideClaimInfoContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════ POLICIES ════════════════════ -->
+  <div id="section-policies" class="section fade-in-up">
+    <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Policy Library</h2>
+    <p style="color:var(--cap-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+      Insurance policies available in the system. The AI Policy Matching Agent retrieves the correct policy using Azure AI Search.
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.25rem;" id="policiesGrid"></div>
+  </div>
+
+  <!-- ════════════════════ ARCHITECTURE ════════════════════ -->
+  <div id="section-architecture" class="section fade-in-up">
+    <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">System Architecture</h2>
+    <p style="color:var(--cap-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+      End-to-end multi-agent AI pipeline powered by Azure AI Foundry, Mistral Document AI, and GPT-4.1-mini.
+    </p>
+
+    <div class="card-cap" style="margin-bottom:1.5rem;">
+      <div class="card-header-cap"><i class="bi bi-diagram-3 text-cap-blue"></i> AI Agent Pipeline</div>
+      <div style="padding:1.5rem; overflow-x:auto;">
+        <div class="arch-flow">
+          <div class="arch-node">
+            <div class="node-icon">📄</div>
+            <div class="node-title">Document Intake</div>
+            <div class="node-subtitle">Image / PDF Upload</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#7B1FA2,#AB47BC);">
+            <div class="node-icon">🔍</div>
+            <div class="node-title">OCR Agent</div>
+            <div class="node-subtitle">Mistral Document AI</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#0070AD,#00ADEF);">
+            <div class="node-icon">🧠</div>
+            <div class="node-title">Structuring Agent</div>
+            <div class="node-subtitle">GPT-4.1-mini</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#00796B,#00ACC1);">
+            <div class="node-icon">🔎</div>
+            <div class="node-title">Policy Matching</div>
+            <div class="node-subtitle">Azure AI Search</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#F57C00,#FFB74D);">
+            <div class="node-icon">⚖️</div>
+            <div class="node-title">Coverage Validation</div>
+            <div class="node-subtitle">GPT-4.1-mini</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="background:linear-gradient(135deg,#1B5E20,#388E3C);">
+            <div class="node-icon">📋</div>
+            <div class="node-title">Decision Report</div>
+            <div class="node-subtitle">APPROVED / DENIED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+      <div class="card-cap">
+        <div class="card-header-cap"><i class="bi bi-cloud text-cap-blue"></i> Azure Services</div>
+        <div style="padding:1.25rem;">
+          <div style="display:flex; flex-direction:column; gap:0.875rem;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🏗️</div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Microsoft Foundry</div><div style="font-size:0.78rem;color:var(--cap-muted);">Agent creation, evaluation, OpenTelemetry tracing</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🔍</div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Azure AI Search</div><div style="font-size:0.78rem;color:var(--cap-muted);">Hybrid search (keyword + vector + semantic reranking)</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📦</div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Azure Container Apps</div><div style="font-size:0.78rem;color:var(--cap-muted);">Auto-scaling REST API deployment</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🔌</div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Azure API Management</div><div style="font-size:0.78rem;color:var(--cap-muted);">MCP Server, rate limiting, authentication</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,112,173,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📊</div>
+              <div><div style="font-weight:600;font-size:0.875rem;">Application Insights</div><div style="font-size:0.78rem;color:var(--cap-muted);">Monitoring, alerting, performance tracking</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-cap">
+        <div class="card-header-cap"><i class="bi bi-robot text-cap-blue"></i> AI Models Used</div>
+        <div style="padding:1.25rem;">
+          <div style="display:flex; flex-direction:column; gap:0.875rem;">
+            <div style="padding:0.875rem; background:var(--cap-gray); border-radius:8px;">
+              <div style="font-weight:700; font-size:0.875rem; color:var(--cap-blue);">Mistral Document AI</div>
+              <div style="font-size:0.78rem; color:var(--cap-muted); margin-top:2px;">OCR Agent · 99%+ accuracy · Up to 3× faster than general LLMs</div>
+              <div style="margin-top:6px; display:flex; gap:4px; flex-wrap:wrap;">
+                <span class="chip chip-blue">OCR Extraction</span>
+                <span class="chip chip-blue">Document Understanding</span>
+              </div>
+            </div>
+            <div style="padding:0.875rem; background:var(--cap-gray); border-radius:8px;">
+              <div style="font-weight:700; font-size:0.875rem; color:var(--cap-blue);">GPT-4.1-mini</div>
+              <div style="font-size:0.78rem; color:var(--cap-muted); margin-top:2px;">Structuring, Policy Matching & Coverage Validation</div>
+              <div style="margin-top:6px; display:flex; gap:4px; flex-wrap:wrap;">
+                <span class="chip chip-blue">JSON Structuring</span>
+                <span class="chip chip-blue">Policy Analysis</span>
+                <span class="chip chip-blue">Coverage Decision</span>
+              </div>
+            </div>
+            <div style="padding:0.875rem; background:var(--cap-gray); border-radius:8px;">
+              <div style="font-weight:700; font-size:0.875rem; color:var(--cap-blue);">Azure AI Search (Embeddings)</div>
+              <div style="font-size:0.78rem; color:var(--cap-muted); margin-top:2px;">Vectorised policy document retrieval with semantic ranking</div>
+              <div style="margin-top:6px; display:flex; gap:4px; flex-wrap:wrap;">
+                <span class="chip chip-blue">Hybrid Search</span>
+                <span class="chip chip-blue">RAG Pattern</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Benefits -->
+    <div class="card-cap">
+      <div class="card-header-cap"><i class="bi bi-stars text-cap-blue"></i> Key Business Benefits</div>
+      <div style="padding:1.25rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1rem;">
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">⚡</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Speed</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">3 days → 2.3 seconds. Process thousands of claims simultaneously.</div>
+        </div>
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🎯</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Accuracy</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">98.5% accuracy, surpassing the 94% manual baseline. Catches policy mismatches automatically.</div>
+        </div>
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">💶</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Cost Savings</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">€847K annual savings per 10,000 claims processed. 90% reduction in manual handling costs.</div>
+        </div>
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🔒</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Fraud Detection</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">AI agents flag policy mismatches, suspicious claims, and coverage fraud automatically.</div>
+        </div>
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">📈</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Scalability</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">Azure Container Apps auto-scales from 1 to 100+ replicas based on demand.</div>
+        </div>
+        <div style="padding:1rem; border-radius:10px; border:1px solid var(--cap-border);">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🔍</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">Observability</div>
+          <div style="font-size:0.82rem; color:var(--cap-muted);">Full OpenTelemetry tracing, continuous evaluation, and Application Insights monitoring.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main-content -->
+
+<!-- ── Bootstrap Modal for Policy Detail ────────────────────────────────────── -->
+<div class="modal fade" id="policyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background:linear-gradient(135deg,var(--cap-dark),var(--cap-blue));color:#fff;border:none;">
+        <div>
+          <div style="font-size:0.75rem;opacity:0.7;" id="modalPolicyCode"></div>
+          <h5 class="modal-title" id="modalPolicyTitle"></h5>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modalPolicyBody"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+let allClaims = [];
+let allPolicies = [];
+let selectedClaimId = null;
+let isPipelineRunning = false;
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.section-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+
+  const section = document.getElementById('section-' + name);
+  if (section) section.classList.add('active');
+  const tab = document.getElementById('tab-' + name);
+  if (tab) tab.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(el => {
+    if (el.textContent.toLowerCase().includes(name === 'architecture' ? 'arch' : name.substring(0,4))) {
+      el.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+// ── Data loading ──────────────────────────────────────────────────────────────
+async function loadAll() {
+  try {
+    const [stats, claims, policies] = await Promise.all([
+      fetch('/api/stats').then(r => r.json()),
+      fetch('/api/claims').then(r => r.json()),
+      fetch('/api/policies').then(r => r.json())
+    ]);
+    allClaims = claims;
+    allPolicies = policies;
+    renderStats(stats);
+    renderDashTable(claims);
+    renderClaimsTable();
+    renderPolicies(policies);
+    renderClaimSelector(claims);
+    renderHeroPipeline();
+  } catch(e) {
+    console.error('Failed to load data:', e);
+  }
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+function renderStats(stats) {
+  document.getElementById('stat-total').textContent = stats.total_claims;
+  document.getElementById('stat-approved').textContent = stats.approved;
+  document.getElementById('stat-denied').textContent = stats.denied;
+  document.getElementById('stat-time').textContent = stats.avg_processing_seconds + 's';
+  document.getElementById('stat-savings').textContent = '€' + (stats.annual_savings_estimate/1000).toFixed(0) + 'K';
+  document.getElementById('stat-accuracy').textContent = stats.accuracy_rate + '%';
+}
+
+// ── Hero Pipeline ─────────────────────────────────────────────────────────────
+function renderHeroPipeline() {
+  const steps = [
+    { icon: '📄', label: 'Document Intake', color: '#0070AD' },
+    { icon: '🔍', label: 'OCR Agent', color: '#7B1FA2' },
+    { icon: '🧠', label: 'JSON Structuring', color: '#0070AD' },
+    { icon: '🔎', label: 'Policy Matching', color: '#00796B' },
+    { icon: '⚖️', label: 'Coverage Validation', color: '#F57C00' },
+    { icon: '📋', label: 'Decision', color: '#00A550' },
+  ];
+  const wrap = document.getElementById('heroPipeline');
+  wrap.innerHTML = steps.map(s => `
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 0;">
+      <div style="width:32px;height:32px;border-radius:50%;background:${s.color};display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">${s.icon}</div>
+      <div style="font-size:0.8rem;font-weight:500;">${s.label}</div>
+    </div>
+  `).join(`<div style="padding-left:16px;color:rgba(255,255,255,0.3);font-size:0.8rem;">↓</div>`);
+}
+
+// ── Dashboard Table ───────────────────────────────────────────────────────────
+function renderDashTable(claims) {
+  const tbody = document.getElementById('dashTableBody');
+  tbody.innerHTML = claims.slice(0,5).map(c => `
+    <tr onclick="openClaimDetail('${c.id}')">
+      <td><span style="font-weight:600;color:var(--cap-blue)">${c.claim_number}</span></td>
+      <td>${c.claimant_name}</td>
+      <td>${c.vehicle}</td>
+      <td><span class="chip chip-gray">${c.policy_number}</span></td>
+      <td><span class="severity-${c.damage_severity}">${capitalize(c.damage_severity)}</span></td>
+      <td>$${c.estimated_cost.toLocaleString()}</td>
+      <td>${badgeHtml(c.decision)}</td>
+    </tr>
+  `).join('');
+}
+
+// ── Claims Table ──────────────────────────────────────────────────────────────
+function renderClaimsTable() {
+  const statusFilter = document.getElementById('filterStatus')?.value || '';
+  const policyFilter = document.getElementById('filterPolicy')?.value || '';
+  const filtered = allClaims.filter(c => {
+    if (statusFilter && c.status !== statusFilter) return false;
+    if (policyFilter && c.policy_number !== policyFilter) return false;
+    return true;
+  });
+  const tbody = document.getElementById('claimsTableBody');
+  tbody.innerHTML = filtered.map(c => `
+    <tr onclick="openClaimDetail('${c.id}')">
+      <td><span style="font-weight:600;color:var(--cap-blue)">${c.claim_number}</span></td>
+      <td>${c.incident_date}</td>
+      <td><div style="font-weight:500">${c.claimant_name}</div></td>
+      <td>${c.vehicle}</td>
+      <td><span class="chip chip-gray">${c.policy_number}</span><div style="font-size:0.72rem;color:var(--cap-muted);margin-top:2px;">${c.policy_type}</div></td>
+      <td><span class="severity-${c.damage_severity}">${capitalize(c.damage_severity)}</span></td>
+      <td>$${c.estimated_cost.toLocaleString()}</td>
+      <td>${badgeHtml(c.decision)}</td>
+      <td>
+        <button class="btn-cap-outline" style="padding:4px 10px;font-size:0.75rem;" onclick="event.stopPropagation();openClaimDetail('${c.id}')">
+          View
+        </button>
+        <button class="btn-cap-outline" style="padding:4px 10px;font-size:0.75rem;margin-left:4px;" onclick="event.stopPropagation();openDemo('${c.id}')">
+          Demo
+        </button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ── Claim Detail ──────────────────────────────────────────────────────────────
+async function openClaimDetail(claimId) {
+  const resp = await fetch('/api/claims/' + claimId);
+  const claim = await resp.json();
+  document.getElementById('detailTitle').textContent = `Claim ${claim.claim_number}`;
+  const content = document.getElementById('claimDetailContent');
+  const dec = claim.decision;
+  const isApproved = dec.outcome === 'APPROVED';
+
+  content.innerHTML = `
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;align-items:start;">
+      <div>
+        <!-- Decision Banner -->
+        <div class="decision-card ${isApproved ? 'approved' : 'denied'} show" style="margin-top:0;margin-bottom:1.5rem;">
+          <div class="decision-badge">${isApproved ? '✅ APPROVED' : '❌ DENIED'}</div>
+          <div class="decision-title">${dec.applicable_coverage}</div>
+          ${isApproved ? `
+            <div style="display:flex;gap:2rem;margin-top:1rem;flex-wrap:wrap;">
+              <div><div style="font-size:0.75rem;opacity:0.8;">Deductible</div><div style="font-weight:700;">${dec.deductible}</div></div>
+              <div><div style="font-size:0.75rem;opacity:0.8;">Coverage Limit</div><div style="font-weight:700;">${dec.coverage_limit}</div></div>
+              <div><div style="font-size:0.75rem;opacity:0.8;">Est. Payout</div><div style="font-weight:700;">$${dec.payout_estimate.toLocaleString()}</div></div>
+            </div>
+          ` : `
+            <div style="margin-top:0.75rem;font-size:0.875rem;opacity:0.9;">${dec.exclusions_triggered.map(e=>`<div>• ${e}</div>`).join('')}</div>
+          `}
+          <div style="margin-top:1rem;font-size:0.85rem;opacity:0.9;font-style:italic;">${dec.reasoning}</div>
+        </div>
+
+        <!-- Claim & Incident Info -->
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-file-text text-cap-blue"></i> Incident Details</div>
+          <div style="padding:1.25rem;">
+            <div class="detail-row"><div class="detail-key">Date & Time</div><div class="detail-val">${claim.incident.date} at ${claim.incident.time}</div></div>
+            <div class="detail-row"><div class="detail-key">Location</div><div class="detail-val">${claim.incident.location}</div></div>
+            <div class="detail-row"><div class="detail-key">Police Report</div><div class="detail-val">#${claim.incident.police_report}</div></div>
+            <div class="detail-row"><div class="detail-key">Weather</div><div class="detail-val">${claim.incident.weather || 'N/A'}</div></div>
+            <hr class="divider" style="margin:0.75rem 0;" />
+            <div style="font-size:0.85rem;color:var(--cap-text);line-height:1.6;">${claim.incident.description}</div>
+          </div>
+        </div>
+
+        <!-- Damage Assessment -->
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-exclamation-triangle text-cap-blue"></i> Damage Assessment</div>
+          <div style="padding:1.25rem;">
+            <div class="detail-row">
+              <div class="detail-key">Severity</div>
+              <div class="detail-val"><span class="severity-${claim.damage.severity}">${capitalize(claim.damage.severity)}</span></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-key">Est. Repair Cost</div>
+              <div class="detail-val" style="font-weight:700;font-size:1.1rem;">$${claim.damage.estimated_repair_cost.toLocaleString()}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-key">Affected Areas</div>
+              <div class="detail-val">${claim.damage.affected_areas.map(a=>`<span class="chip chip-gray" style="margin:2px;">${a}</span>`).join('')}</div>
+            </div>
+            <div style="margin-top:0.75rem;font-size:0.85rem;color:var(--cap-muted);line-height:1.6;">${claim.damage.description}</div>
+          </div>
+        </div>
+
+        <!-- AI Pipeline Results -->
+        <div class="card-cap">
+          <div class="card-header-cap"><i class="bi bi-cpu text-cap-blue"></i> AI Pipeline Results</div>
+          <div style="padding:1.25rem;">
+            ${renderPipelineResultCards(claim)}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-image text-cap-blue"></i> Claim Image</div>
+          <div style="padding:1rem;text-align:center;">
+            <img src="/images/${claim.id.replace('crash','crash')}.jpg" alt="Claim image"
+              style="max-width:100%;border-radius:8px;"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div style="display:none;background:var(--cap-gray);border-radius:8px;padding:2rem;color:var(--cap-muted);align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;">
+              <i class="bi bi-image" style="font-size:2rem;"></i><div style="font-size:0.8rem;">Image not available</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-person text-cap-blue"></i> Claimant</div>
+          <div style="padding:1rem;">
+            <div class="detail-row"><div class="detail-key">Name</div><div class="detail-val" style="font-weight:600;">${claim.claimant.name}</div></div>
+            <div class="detail-row"><div class="detail-key">Phone</div><div class="detail-val">${claim.claimant.phone}</div></div>
+            <div class="detail-row"><div class="detail-key">Address</div><div class="detail-val">${claim.claimant.address}</div></div>
+          </div>
+        </div>
+
+        <div class="card-cap" style="margin-bottom:1rem;">
+          <div class="card-header-cap"><i class="bi bi-car-front text-cap-blue"></i> Vehicle</div>
+          <div style="padding:1rem;">
+            <div class="detail-row"><div class="detail-key">Vehicle</div><div class="detail-val" style="font-weight:600;">${claim.vehicle.year} ${claim.vehicle.make} ${claim.vehicle.model}</div></div>
+            <div class="detail-row"><div class="detail-key">Colour</div><div class="detail-val">${claim.vehicle.color}</div></div>
+            <div class="detail-row"><div class="detail-key">Plate</div><div class="detail-val">${claim.vehicle.plate}</div></div>
+            <div class="detail-row"><div class="detail-key">VIN</div><div class="detail-val" style="font-size:0.78rem;">${claim.vehicle.vin}</div></div>
+          </div>
+        </div>
+
+        <div class="card-cap">
+          <div class="card-header-cap"><i class="bi bi-shield text-cap-blue"></i> Policy</div>
+          <div style="padding:1rem;">
+            <div class="detail-row"><div class="detail-key">Policy #</div><div class="detail-val"><span class="chip chip-blue">${claim.policy.number}</span></div></div>
+            <div class="detail-row"><div class="detail-key">Type</div><div class="detail-val">${claim.policy.type}</div></div>
+            <div class="detail-row"><div class="detail-key">Claim Request</div><div class="detail-val" style="font-style:italic;font-size:0.82rem;">"${claim.claim_request}"</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center;">
+      <button class="btn-cap-outline" onclick="openDemo('${claim.id}')">
+        <i class="bi bi-play-circle"></i> Run Pipeline Demo for this Claim
+      </button>
+    </div>
+  `;
+
+  showSection('claim-detail');
+}
+
+function renderPipelineResultCards(claim) {
+  const p = claim.pipeline;
+  const cards = [
+    {
+      icon:'🔍', title:'OCR Agent', model: p.ocr.model,
+      items: [
+        ['Confidence', (p.ocr.confidence*100).toFixed(0)+'%'],
+        ['Characters extracted', p.ocr.characters_extracted.toLocaleString()],
+        ['Processing time', p.ocr.processing_ms+'ms'],
+      ],
+      preview: p.ocr.text_preview
+    },
+    {
+      icon:'🧠', title:'JSON Structuring Agent', model: p.structuring.model,
+      items: [
+        ['Fields extracted', p.structuring.fields_extracted],
+        ['Confidence', (p.structuring.confidence*100).toFixed(0)+'%'],
+        ['Processing time', p.structuring.processing_ms+'ms'],
+      ]
+    },
+    {
+      icon:'🔎', title:'Policy Matching Agent', model: p.policy_match.model,
+      items: [
+        ['Policy found', p.policy_match.policy_found],
+        ['Match confidence', (p.policy_match.match_confidence*100).toFixed(0)+'%'],
+        ['Processing time', p.policy_match.processing_ms+'ms'],
+      ]
+    },
+    {
+      icon:'⚖️', title:'Coverage Validation Agent', model: p.coverage_validation.model,
+      items: [
+        ['Sections checked', p.coverage_validation.sections_checked.join(', ')],
+        ['Exclusions checked', p.coverage_validation.exclusions_checked.length],
+        ['Processing time', p.coverage_validation.processing_ms+'ms'],
+      ]
+    },
+  ];
+  return cards.map(c => `
+    <div style="border:1px solid var(--cap-border);border-radius:8px;margin-bottom:0.875rem;overflow:hidden;">
+      <div style="background:var(--cap-gray);padding:0.75rem 1rem;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:1.1rem;">${c.icon}</span>
+        <div>
+          <div style="font-weight:600;font-size:0.875rem;">${c.title}</div>
+          <div style="font-size:0.75rem;color:var(--cap-muted);">${c.model}</div>
+        </div>
+        <span class="badge-status badge-approved" style="margin-left:auto;">✓ Complete</span>
+      </div>
+      <div style="padding:0.75rem 1rem;">
+        ${c.items.map(([k,v]) => `<div class="detail-row"><div class="detail-key">${k}</div><div class="detail-val">${v}</div></div>`).join('')}
+        ${c.preview ? `<div style="margin-top:0.5rem;background:#1a1f2e;color:#d4e0f0;border-radius:6px;padding:0.75rem;font-family:monospace;font-size:0.75rem;line-height:1.5;max-height:100px;overflow:hidden;white-space:pre-wrap;">${escHtml(c.preview.substring(0,300))}...</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Pipeline Demo ─────────────────────────────────────────────────────────────
+const PIPELINE_STEPS_META = [
+  {
+    icon: '📄',
+    title: 'Document Intake',
+    subtitle: 'Receiving claim document',
+    description: 'Ingesting claim image and extracting file metadata',
+    model: 'Document Intake Service',
+    duration: 600,
+    getResult(claim) {
+      return {
+        success: true,
+        label: 'Document received',
+        details: `
+          <div class="detail-row"><div class="detail-key">File</div><div class="detail-val">${claim.id}.jpg</div></div>
+          <div class="detail-row"><div class="detail-key">Claim #</div><div class="detail-val">${claim.claim_number}</div></div>
+          <div class="detail-row"><div class="detail-key">Claimant</div><div class="detail-val">${claim.claimant.name}</div></div>
+        `
+      };
+    }
+  },
+  {
+    icon: '🔍',
+    title: 'OCR Extraction',
+    subtitle: 'Mistral Document AI',
+    description: 'Extracting text from claim image using AI vision',
+    model: 'Mistral Document AI',
+    duration: 1400,
+    getResult(claim) {
+      const p = claim.pipeline.ocr;
+      return {
+        success: true,
+        label: `Extracted ${p.characters_extracted} characters with ${(p.confidence*100).toFixed(0)}% confidence`,
+        details: `
+          <div class="detail-row"><div class="detail-key">Model</div><div class="detail-val">${p.model}</div></div>
+          <div class="detail-row"><div class="detail-key">Confidence</div><div class="detail-val">${(p.confidence*100).toFixed(0)}%</div></div>
+          <div class="detail-row"><div class="detail-key">Characters</div><div class="detail-val">${p.characters_extracted.toLocaleString()}</div></div>
+          <div class="detail-row"><div class="detail-key">Time</div><div class="detail-val">${p.processing_ms}ms</div></div>
+        `,
+        preview: p.text_preview
+      };
+    }
+  },
+  {
+    icon: '🧠',
+    title: 'JSON Structuring',
+    subtitle: 'GPT-4.1-mini',
+    description: 'Converting OCR text to structured JSON using GPT-4.1-mini',
+    model: 'GPT-4.1-mini',
+    duration: 1200,
+    getResult(claim) {
+      const p = claim.pipeline.structuring;
+      const jsonPreview = {
+        policy_number: claim.policy.number,
+        policy_holder_name: claim.claimant.name,
+        vehicle_year_make_model: `${claim.vehicle.year} ${claim.vehicle.make} ${claim.vehicle.model}`,
+        incident_date: claim.incident.date,
+        damage_description: claim.damage.description.substring(0,80) + '...',
+        claim_request: claim.claim_request
+      };
+      return {
+        success: true,
+        label: `Structured ${p.fields_extracted} fields with ${(p.confidence*100).toFixed(0)}% confidence`,
+        details: `
+          <div class="detail-row"><div class="detail-key">Fields extracted</div><div class="detail-val">${p.fields_extracted}</div></div>
+          <div class="detail-row"><div class="detail-key">Confidence</div><div class="detail-val">${(p.confidence*100).toFixed(0)}%</div></div>
+          <div class="detail-row"><div class="detail-key">Time</div><div class="detail-val">${p.processing_ms}ms</div></div>
+        `,
+        json: jsonPreview
+      };
+    }
+  },
+  {
+    icon: '🔎',
+    title: 'Policy Matching',
+    subtitle: 'Azure AI Search + GPT-4.1-mini',
+    description: 'Retrieving matching policy via hybrid vector search',
+    model: 'Azure AI Search + GPT-4.1-mini',
+    duration: 900,
+    getResult(claim) {
+      const p = claim.pipeline.policy_match;
+      return {
+        success: true,
+        label: `Matched: ${p.policy_found}`,
+        details: `
+          <div class="detail-row"><div class="detail-key">Policy found</div><div class="detail-val" style="font-weight:600;">${p.policy_found}</div></div>
+          <div class="detail-row"><div class="detail-key">Match confidence</div><div class="detail-val">${(p.match_confidence*100).toFixed(0)}%</div></div>
+          <div class="detail-row"><div class="detail-key">Search results</div><div class="detail-val">${p.search_results} match(es)</div></div>
+          <div class="detail-row"><div class="detail-key">Method</div><div class="detail-val">Hybrid (keyword + vector + semantic)</div></div>
+          <div class="detail-row"><div class="detail-key">Time</div><div class="detail-val">${p.processing_ms}ms</div></div>
+        `
+      };
+    }
+  },
+  {
+    icon: '⚖️',
+    title: 'Coverage Validation',
+    subtitle: 'GPT-4.1-mini',
+    description: 'Comparing claim against policy terms for coverage decision',
+    model: 'GPT-4.1-mini',
+    duration: 1100,
+    getResult(claim) {
+      const p = claim.pipeline.coverage_validation;
+      return {
+        success: true,
+        label: 'Coverage determination complete',
+        details: `
+          <div class="detail-row"><div class="detail-key">Sections checked</div><div class="detail-val">${p.sections_checked.join(', ')}</div></div>
+          <div class="detail-row"><div class="detail-key">Exclusions checked</div><div class="detail-val">${p.exclusions_checked.join('; ')}</div></div>
+          <div class="detail-row"><div class="detail-key">Time</div><div class="detail-val">${p.processing_ms}ms</div></div>
+        `
+      };
+    }
+  },
+];
+
+let claimDetailCache = {};
+
+function renderClaimSelector(claims) {
+  const container = document.getElementById('claimSelector');
+  container.innerHTML = claims.map(c => `
+    <div class="claim-tile" id="tile-${c.id}" onclick="selectClaim('${c.id}')">
+      <div class="tile-id">${c.id.toUpperCase()}</div>
+      <div class="tile-name">${c.claimant_name}</div>
+      <div class="tile-vehicle">${c.vehicle.split(' ').slice(0,3).join(' ')}</div>
+      <div style="margin-top:6px;">${badgeHtml(c.decision)}</div>
+    </div>
+  `).join('');
+}
+
+async function selectClaim(claimId) {
+  selectedClaimId = claimId;
+  document.querySelectorAll('.claim-tile').forEach(t => t.classList.remove('selected'));
+  document.getElementById('tile-' + claimId)?.classList.add('selected');
+  document.getElementById('runPipelineBtn').disabled = false;
+
+  // Show image
+  const img = document.getElementById('claimImage');
+  const placeholder = document.getElementById('imagePlaceholder');
+  img.src = `/images/${claimId}.jpg`;
+  img.style.display = 'block';
+  placeholder.style.display = 'none';
+  img.onerror = () => { img.style.display='none'; placeholder.style.display='block'; };
+
+  // Load claim and show side info
+  if (!claimDetailCache[claimId]) {
+    claimDetailCache[claimId] = await fetch('/api/claims/' + claimId).then(r => r.json());
+  }
+  const claim = claimDetailCache[claimId];
+  const sideInfo = document.getElementById('sideClaimInfo');
+  const sideContent = document.getElementById('sideClaimInfoContent');
+  sideInfo.style.display = 'block';
+  sideContent.innerHTML = `
+    <div class="detail-row"><div class="detail-key">Claim #</div><div class="detail-val" style="font-weight:600;color:var(--cap-blue)">${claim.claim_number}</div></div>
+    <div class="detail-row"><div class="detail-key">Claimant</div><div class="detail-val">${claim.claimant.name}</div></div>
+    <div class="detail-row"><div class="detail-key">Vehicle</div><div class="detail-val">${claim.vehicle.year} ${claim.vehicle.make} ${claim.vehicle.model}</div></div>
+    <div class="detail-row"><div class="detail-key">Policy</div><div class="detail-val"><span class="chip chip-blue">${claim.policy.number}</span></div></div>
+    <div class="detail-row"><div class="detail-key">Policy type</div><div class="detail-val" style="font-size:0.8rem;">${claim.policy.type}</div></div>
+    <div class="detail-row"><div class="detail-key">Date</div><div class="detail-val">${claim.incident.date}</div></div>
+    <div style="margin-top:0.75rem;padding:0.75rem;background:var(--cap-gray);border-radius:6px;font-size:0.8rem;color:var(--cap-muted);">
+      "${claim.claim_request}"
+    </div>
+  `;
+
+  resetPipeline();
+}
+
+async function runPipeline() {
+  if (!selectedClaimId || isPipelineRunning) return;
+  if (!claimDetailCache[selectedClaimId]) {
+    claimDetailCache[selectedClaimId] = await fetch('/api/claims/' + selectedClaimId).then(r => r.json());
+  }
+  const claim = claimDetailCache[selectedClaimId];
+  isPipelineRunning = true;
+  document.getElementById('runPipelineBtn').disabled = true;
+
+  const stepsContainer = document.getElementById('pipelineSteps');
+  const progressWrap = document.getElementById('progressBarWrap');
+  const progressFill = document.getElementById('progressFill');
+  const decisionCard = document.getElementById('decisionCard');
+  const statusEl = document.getElementById('pipelineStatus');
+
+  progressWrap.style.display = 'block';
+  decisionCard.classList.remove('show');
+
+  // Build step HTML
+  stepsContainer.innerHTML = PIPELINE_STEPS_META.map((s, i) => `
+    <div class="pipeline-step" id="pstep-${i}">
+      <div class="step-circle waiting" id="pcirc-${i}">${i + 1}</div>
+      <div class="step-content">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="step-title">${s.icon} ${s.title}</div>
+          <span id="pstatus-${i}" style="font-size:0.75rem;color:var(--cap-muted);">Waiting</span>
+        </div>
+        <div class="step-subtitle">${s.model}</div>
+        <div class="step-result" id="presult-${i}"></div>
+      </div>
+    </div>
+  `).join('');
+
+  let totalMs = PIPELINE_STEPS_META.reduce((s,m) => s+m.duration, 0);
+  let elapsed = 0;
+
+  for (let i = 0; i < PIPELINE_STEPS_META.length; i++) {
+    const meta = PIPELINE_STEPS_META[i];
+    const circle = document.getElementById('pcirc-' + i);
+    const stepEl = document.getElementById('pstep-' + i);
+    const statusSpan = document.getElementById('pstatus-' + i);
+    const resultDiv = document.getElementById('presult-' + i);
+
+    // Mark running
+    circle.className = 'step-circle running';
+    circle.innerHTML = `<div class="spinner-sm"></div>`;
+    statusSpan.textContent = 'Processing...';
+    statusSpan.style.color = 'var(--cap-blue)';
+    statusEl.textContent = `Running: ${meta.title}...`;
+
+    await sleep(meta.duration);
+
+    // Mark done
+    elapsed += meta.duration;
+    progressFill.style.width = ((elapsed / totalMs) * 100) + '%';
+
+    const result = meta.getResult(claim);
+    circle.className = 'step-circle done';
+    circle.textContent = '✓';
+    stepEl.classList.add('done');
+    statusSpan.textContent = '✓ Complete';
+    statusSpan.style.color = 'var(--cap-success)';
+
+    resultDiv.innerHTML = `
+      <div style="font-weight:600;font-size:0.82rem;color:var(--cap-success);margin-bottom:6px;">✓ ${result.label}</div>
+      ${result.details}
+      ${result.preview ? `<div style="margin-top:0.5rem;"><div style="font-size:0.75rem;color:var(--cap-muted);margin-bottom:3px;">Extracted text preview:</div><div style="background:#1a1f2e;color:#d4e0f0;border-radius:6px;padding:0.6rem;font-family:monospace;font-size:0.73rem;line-height:1.5;max-height:80px;overflow:hidden;white-space:pre-wrap;">${escHtml(result.preview.substring(0,200))}...</div></div>` : ''}
+      ${result.json ? `<div style="margin-top:0.5rem;"><div style="font-size:0.75rem;color:var(--cap-muted);margin-bottom:3px;">Structured output preview:</div><div class="json-box" style="max-height:80px;">${syntaxHighlight(result.json)}</div></div>` : ''}
+    `;
+    resultDiv.classList.add('show', 'success');
+  }
+
+  // Final decision
+  const dec = claim.decision;
+  const isApproved = dec.outcome === 'APPROVED';
+  decisionCard.className = `decision-card ${isApproved ? 'approved' : 'denied'} show`;
+  decisionCard.innerHTML = `
+    <div class="decision-badge">${isApproved ? '✅ CLAIM APPROVED' : '❌ CLAIM DENIED'}</div>
+    <div class="decision-title" style="margin-bottom:0.5rem;">${dec.applicable_coverage}</div>
+    ${isApproved ? `
+      <div style="display:flex;gap:2rem;margin:0.75rem 0;flex-wrap:wrap;">
+        <div><div style="font-size:0.75rem;opacity:0.8;">Deductible</div><div style="font-weight:700;">${dec.deductible}</div></div>
+        <div><div style="font-size:0.75rem;opacity:0.8;">Coverage Limit</div><div style="font-weight:700;">${dec.coverage_limit}</div></div>
+        <div><div style="font-size:0.75rem;opacity:0.8;">Estimated Payout</div><div style="font-weight:700;">$${dec.payout_estimate.toLocaleString()}</div></div>
+      </div>
+    ` : dec.exclusions_triggered.map(e=>`<div style="font-size:0.875rem;opacity:0.9;margin-top:0.5rem;">• ${e}</div>`).join('')}
+    <div style="font-size:0.85rem;opacity:0.9;margin-top:0.75rem;font-style:italic;border-top:1px solid rgba(255,255,255,0.2);padding-top:0.75rem;">${dec.reasoning}</div>
+    <div style="margin-top:0.75rem;font-size:0.8rem;opacity:0.8;"><strong>Recommendation:</strong> ${dec.recommendation}</div>
+  `;
+
+  progressFill.style.width = '100%';
+  statusEl.textContent = `✓ Pipeline complete in ~${(PIPELINE_STEPS_META.reduce((s,m)=>s+m.duration,0)/1000).toFixed(1)}s`;
+  statusEl.style.color = 'var(--cap-success)';
+  isPipelineRunning = false;
+}
+
+function resetPipeline() {
+  const stepsContainer = document.getElementById('pipelineSteps');
+  const decisionCard = document.getElementById('decisionCard');
+  const progressWrap = document.getElementById('progressBarWrap');
+  const progressFill = document.getElementById('progressFill');
+  const statusEl = document.getElementById('pipelineStatus');
+
+  if (stepsContainer) stepsContainer.innerHTML = `
+    <div style="text-align:center;padding:2rem;color:var(--cap-muted);">
+      <i class="bi bi-cpu" style="font-size:2.5rem;display:block;margin-bottom:0.5rem;opacity:0.4;"></i>
+      <div style="font-size:0.875rem;">Select a claim above and click <strong>Run AI Pipeline</strong></div>
+    </div>
+  `;
+  if (decisionCard) decisionCard.classList.remove('show');
+  if (progressWrap) progressWrap.style.display = 'none';
+  if (progressFill) progressFill.style.width = '0%';
+  if (statusEl) statusEl.textContent = '';
+  if (statusEl) statusEl.style.color = 'var(--cap-muted)';
+  isPipelineRunning = false;
+  if (selectedClaimId) document.getElementById('runPipelineBtn').disabled = false;
+}
+
+function openDemo(claimId) {
+  showSection('demo');
+  setTimeout(() => selectClaim(claimId), 100);
+}
+
+// ── Policies ──────────────────────────────────────────────────────────────────
+function renderPolicies(policies) {
+  const grid = document.getElementById('policiesGrid');
+  grid.innerHTML = policies.map(p => `
+    <div class="policy-card" onclick="showPolicyModal(${JSON.stringify(p).replace(/"/g,'&quot;')})">
+      <div class="policy-header">
+        <div class="policy-code">${p.code}</div>
+        <div class="policy-name">${p.name}</div>
+        <div class="policy-category">${p.category}</div>
+      </div>
+      <div class="policy-body">
+        <div style="margin-bottom:1rem;">
+          <span class="premium">€${p.monthly_premium}<span>/month</span></span>
+        </div>
+        <div style="font-size:0.82rem;color:var(--cap-muted);margin-bottom:0.75rem;">${p.description}</div>
+        <div style="font-weight:600;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--cap-muted);margin-bottom:0.5rem;">Covered</div>
+        <ul class="coverage-list">
+          ${p.covered.slice(0,4).map(c=>`<li>${c}</li>`).join('')}
+          ${p.covered.length > 4 ? `<li style="color:var(--cap-muted);">+${p.covered.length-4} more...</li>` : ''}
+        </ul>
+        <div style="margin-top:0.75rem;font-weight:600;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--cap-muted);margin-bottom:0.5rem;">Deductible</div>
+        <div style="font-weight:700;color:var(--cap-blue)">${p.deductible}</div>
+        <div style="margin-top:0.875rem;text-align:center;padding-top:0.875rem;border-top:1px solid var(--cap-border);font-size:0.78rem;color:var(--cap-blue);">
+          Click to view full details →
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showPolicyModal(policy) {
+  document.getElementById('modalPolicyCode').textContent = policy.code;
+  document.getElementById('modalPolicyTitle').textContent = policy.name;
+  const limits = Object.entries(policy.limits).map(([k,v]) => `
+    <div class="detail-row"><div class="detail-key">${k.replace(/_/g,' ')}</div><div class="detail-val">${v}</div></div>
+  `).join('');
+  document.getElementById('modalPolicyBody').innerHTML = `
+    <div class="row g-3 pt-1">
+      <div class="col-md-6">
+        <div class="detail-section">
+          <h6><i class="bi bi-shield-check text-success"></i> What's Covered</h6>
+          <ul class="coverage-list">${policy.covered.map(c=>`<li>${c}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-section">
+          <h6><i class="bi bi-x-circle text-danger"></i> What's Not Covered</h6>
+          <ul class="coverage-list exclusion-list">${policy.not_covered.map(c=>`<li>${c}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-section">
+          <h6><i class="bi bi-bar-chart text-cap-blue"></i> Coverage Limits</h6>
+          ${limits}
+        </div>
+      </div>
+      <div class="col-12">
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <div class="metric-box" style="flex:1;min-width:120px;">
+            <div class="m-val">€${policy.monthly_premium}</div>
+            <div class="m-lbl">Monthly Premium</div>
+          </div>
+          <div class="metric-box" style="flex:1;min-width:120px;">
+            <div class="m-val" style="font-size:1.1rem;">${policy.deductible}</div>
+            <div class="m-lbl">Deductible</div>
+          </div>
+          <div class="metric-box" style="flex:1;min-width:120px;">
+            <div class="m-val" style="font-size:1.1rem;">${policy.category}</div>
+            <div class="m-lbl">Category</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  new bootstrap.Modal(document.getElementById('policyModal')).show();
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function badgeHtml(status) {
+  const s = (status || '').toLowerCase();
+  const icons = { approved:'✅', denied:'❌', pending:'⏳', partial_coverage:'⚠️' };
+  const labels = { approved:'Approved', denied:'Denied', pending:'Pending', partial_coverage:'Partial' };
+  return `<span class="badge-status badge-${s}">${icons[s]||''} ${labels[s]||capitalize(s)}</span>`;
+}
+
+function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function syntaxHighlight(json) {
+  const str = JSON.stringify(json, null, 2);
+  return escHtml(str)
+    .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
+    .replace(/: "([^"]+)"/g, ': <span class="json-str">"$1"</span>')
+    .replace(/: (\d+\.?\d*)/g, ': <span class="json-num">$1</span>')
+    .replace(/: (true)/g, ': <span class="json-bool-true">$1</span>')
+    .replace(/: (false)/g, ': <span class="json-bool-false">$1</span>');
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadAll();
+  resetPipeline();
+});
+</script>
+</body>
+</html>
