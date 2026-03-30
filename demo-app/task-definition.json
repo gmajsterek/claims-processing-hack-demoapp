@@ -1,0 +1,31 @@
+{
+  "_comment": "Replace ACCOUNT_ID with your 12-digit AWS account ID and REGION with your target region (e.g. us-east-1). The 'image' field is overridden at deploy time by the GitHub Actions workflow.",
+  "family": "claims-demo-app",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "claims-demo-app",
+      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/claims-demo-app:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/claims-demo-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
